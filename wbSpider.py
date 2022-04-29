@@ -22,7 +22,7 @@ def saveData2DB(dataList, dbpath):
     init_db(dbpath)
     for index in range(len(dataList)):
         dataList[index] = '\"' + dataList[index] + '\"'
-        sql = "insert into rankTop_"+datetime_toString(dt)+" (title) values (" + dataList[index] + ")"
+        sql = "insert into rankTop_" + datetime_toString(dt) + " (title) values (" + dataList[index] + ")"
         conn = sqlite3.connect(dbpath)
         cur = conn.cursor()
         cur.execute(sql)
@@ -33,7 +33,8 @@ def saveData2DB(dataList, dbpath):
 
 def init_db(dbpath):
     dt = datetime.now()
-    sql = "create table rankTop_%s (id integer primary key autoincrement, title varchar(50) not null ) " % datetime_toString(dt)
+    sql = "create table rankTop_%s (id integer primary key autoincrement, title varchar(50) not null ) " % datetime_toString(
+        dt)
     conn = sqlite3.connect(dbpath)
     cursor = conn.cursor()
     cursor.execute(sql)
@@ -81,4 +82,5 @@ def main():
     saveData2DB(dataList, dbpath)
 
 
-
+if __name__ == "__main__":
+    main()
